@@ -35,8 +35,7 @@ const statusData = status ? statusConfig[status] : null;
 </section>
 <section class="cs-hero" style={`background-color: ${coverColor}`}>
 <div class="cs-cover">
-  {image && <img src={image} alt={imageAlt} />}
-</div>
+  {image && <img src={image} alt={imageAlt ?? ''} loading="eager" fetchpriority="high" />}</div>
 </section>
 
 
