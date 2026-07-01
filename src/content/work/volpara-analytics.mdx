@@ -21,8 +21,8 @@ import ImageTwo from '../../components/cs/ImageTwo.astro';
 import TwoCol from '../../components/cs/TwoCol.astro';
 import Card from '../../components/cs/Card.astro';
 import CardGrid from '../../components/cs/Cardgrid.astro';
-import StatCallout from '../../components/cs/StatCallout.astro';
-import Beforeafter from '../../components/cs/Beforeafter.astro';
+import StatCallOut from '../../components/cs/StatCallOut.astro';
+import BeforeAfter from '../../components/cs/BeforeAfter.astro';
 
 
 <Hero
@@ -44,7 +44,7 @@ import Beforeafter from '../../components/cs/Beforeafter.astro';
 <Section label="Research" title="The data existed, the context didn't">
   Technologists had minutes between patients and no way to know if a score was good, bad, or worth acting on. We used Volpara's dataset to establish 160 unique thresholds, giving every metric a frame of reference for the first time.
 
-  <StatCallout 
+  <StatCallOut 
   stats={[
     { value: '2,000+', label: 'Mammogram technologists analysed' },
     { value: '3M+', label: 'Mammography images reviewed' },
@@ -60,7 +60,7 @@ import Beforeafter from '../../components/cs/Beforeafter.astro';
 
 We built a semantic colour system to better communicate our new thresholds. The first thing we cut was red. Underperformance became a focus area, not a failure. In a clinical environment, shame doesn’t change behaviour but clarity and positivity does.
   </Section>
-  <Beforeafter slot="right"
+  <BeforeAfter slot="right"
     before="/images/volpara/positioning-after.png"
     after="/images/volpara/positioning-before.png"
   />
@@ -107,7 +107,7 @@ We built a semantic colour system to better communicate our new thresholds. The 
 <Section label="Outcomes" title="The numbers moved">
   Four months after release, we saw <i>statistically significant</i> improvements across positioning, compression, and quality, measured across all technologists using the software before and after launch.
 
-<StatCallout
+<StatCallOut
   stats={[
     { value: '2.16', label: 'Median quality score up from 2.04' },
     { value: '+5%', label: 'Positioning score improvement' },
