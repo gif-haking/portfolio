@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EntryList from '../components/EntryList.astro';
+import { ArrowUpRight } from 'lucide-astro';
+
+const now = [
+  { year: '2024–Present', title: 'Karbon', subtitle: 'Senior Product Designer' },
+  { year: '2023–Present', title: 'Friends of Figma, Wellington', subtitle: 'Co-Organiser' },
+  { year: '2020–Present', title: 'Freelance', subtitle: 'Web design and development' },
+]
+
+const previously = [
+  { year: '2022–24', title: 'NZ Police', subtitle: 'Senior Service Designer' },
+  { year: '2019–22', title: 'Volpara Health', subtitle: 'Senior Product Designer' },
+  { year: '2017–19', title: 'DNA Design', subtitle: 'Experience Designer' },
+  { year: '2015–17', title: 'Trade Me', subtitle: 'Product Designer' },
+]
+
+---
+
+<BaseLayout title="About — Your Name" description="Product designer with X years of experience.">
+  <section class="about-section">
+    <div class="container">
+
+      <div class="about-grid text-lg lg:text-2xl">
+        <div class="about-left">
+          <div class="portrait-placeholder" aria-hidden="true"></div>
+        </div>
+
+        <div class="about-right">
+          <h1 class="mb-10 lg:tracking-tight text-3xl lg:text-5xl">Hayden King</h1>
+
+          <div class="about-bio">
+            <p>
+              I'm a product designer with a background in [your background]. 
+              I'm drawn to complex problems — the kind where good design means 
+              asking better questions, not just making things look nice.
+            </p>
+            <p>
+              Currently at <a href="#" 
+                class="link">Karbon<span class="text-[0 em] relative -top-[0.2em] ml-.5 inline-block leading-none"><ArrowUpRight size={12} strokeWidth={1.5}/></span></a>, 
+              where I work on [what you work on]. 
+              Previously at <a href="#" class="link">Previous Company</a>.
+            </p>
+            <p>
+              Outside of work, I'm interested in [interests]. 
+              I'm based in [city].
+            </p>
+          </div>
+
+          <div class="about-details">
+            <h3 class="detail-label text-dark-grey dark:text-light-grey mb-2.5 lg:mb-5 leading-normal lg:leading-relaxed text-lg lg:text-2xl max-w-4xl">Now</h3>
+              <EntryList entries={now} />
+  
+            <h3 class="detail-label text-dark-grey dark:text-light-grey mb-2.5 lg:mb-5 leading-normal lg:leading-relaxed text-lg lg:text-2xl max-w-4xl mt-10">Previously</h3>
+              <EntryList entries={previously} />
+          </div>
+          </div>
+
+          <div class="about-contact">
+            <a href="mailto:hello@yourname.com" class="cta-link">
+              Get in touch →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-section {
+    padding: 6rem 0 8rem;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .portrait-placeholder {
+    aspect-ratio: 3/4;
+    background: var(--color-border);
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .about-name {
+    font-family: var(--font-sans);
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+
+  .about-role {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .about-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+    color: var(--color-grey);
+  }
+
+  .link {
+    text-decoration: underline;
+    font-weight: 400;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 0.15s ease;
+    text-decoration-color: var(--color-light-grey);
+  }
+
+  .link:hover {
+    text-decoration-color: var(--color-off-black);
+  }
+
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .detail-label {
+    color: var(--color-muted);
+  }
+
+  .detail-group p {
+    font-size: 0.9375rem;
+    font-weight: 300;
+  }
+
+  .cta-link {
+    font-size: 1rem;
+    font-weight: 400;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 1px;
+    transition: opacity 0.15s ease;
+  }
+
+  .cta-link:hover {
+    opacity: 0.6;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .portrait-placeholder {
+      max-width: 240px;
+    }
+  }
+</style>

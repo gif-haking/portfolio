@@ -1,0 +1,127 @@
+---
+title: Volpara Analytics
+description: Volpara Analytics helps mammogram technologists monitor and improve their performance. Better technique means fewer missed cancers.
+year: '2020'
+client: Volpara Health
+status: shipped
+coverColor: '#0994A9'
+image: '/images/volpara/volpara-cover.png'
+published: true
+order: 1
+---
+
+import Hero from '../../components/cs/Hero.astro';
+import Intro from '../../components/cs/Intro.astro';
+import Section from '../../components/cs/Section.astro';
+import Outcomes from '../../components/cs/Outcomes.astro';
+import QuoteCarousel from '../../components/cs/QuoteCarousel.tsx';
+import Credits from '../../components/cs/Credits.astro';
+import ImageFull from '../../components/cs/ImageFull.astro';
+import ImageTwo from '../../components/cs/ImageTwo.astro';
+import TwoCol from '../../components/cs/TwoCol.astro';
+import Card from '../../components/cs/Card.astro';
+import CardGrid from '../../components/cs/Cardgrid.astro';
+import StatCallout from '../../components/cs/StatCallout.astro';
+import BeforeAfter from '../../components/cs/BeforeAfter.astro';
+
+
+<Hero
+  description={frontmatter.description}
+  year={frontmatter.year}
+  status={frontmatter.status}
+  client={frontmatter.client}
+  coverColor={frontmatter.coverColor}
+  image="/images/volpara/volpara-hero.png"
+  imageAlt="Volpara Analytics dashboard"
+/>
+
+<Section title="Background">
+  Volpara Analytics existed to help mammography technologists improve their technique. Better technique means fewer missed cancers. The problem was nobody was using it.
+
+  Slow dashboards, inconsistent metrics, no clear signal for when something needed attention. Technologists logged in so infrequently they had to relearn it every visit. Data that could improve patient outcomes was sitting unused.
+</Section>
+
+<Section label="Research" title="The data existed, the context didn't">
+  Technologists had minutes between patients and no way to know if a score was good, bad, or worth acting on. We used Volpara's dataset to establish 160 unique thresholds, giving every metric a frame of reference for the first time.
+
+  <StatCallout 
+  stats={[
+    { value: '2,000+', label: 'Mammogram technologists analysed' },
+    { value: '3M+', label: 'Mammography images reviewed' },
+    { value: '~250', label: 'Unique thresholds established' },
+  ]}
+/>
+</Section>
+
+
+<TwoCol>
+  <Section slot="left" label="Design" title="The most important decision was to remove red">
+    A co-design sprint with clinicians and technologists produced three principles: Actionable. Positive. Transparent.
+
+We built a semantic colour system to better communicate our new thresholds. The first thing we cut was red. Underperformance became a focus area, not a failure. In a clinical environment, shame doesn’t change behaviour but clarity and positivity does.
+  </Section>
+  <BeforeAfter slot="right"
+    before="/images/volpara/positioning-after.png"
+    after="/images/volpara/positioning-before.png"
+  />
+</TwoCol>
+
+
+  <CardGrid cols={1}>
+  <Card bleed >
+    <img slot="media" src="/images/volpara/performance-glance.png" alt="Perfomance" />
+    </Card>
+  </CardGrid>
+
+<CardGrid cols={2}>
+  <Card >
+    <img slot="media" src="/images/volpara/score.png" alt="Quality score" />
+  </Card>
+  <Card bleed>
+    <img slot="media" src="/images/volpara/insights.png" alt="Insights" />
+  </Card>
+</CardGrid>
+
+  <Section>
+    <Card bleed>
+     <img slot="media" src="/images/volpara/components.png" alt="Components" />
+    </Card>
+    <Section label="Solution" title="Designed around what technologists actually did">
+      Every user went straight for their quality score. We built around that, keeping it central and organising everything else to support it.
+
+      A natural-language algorithm surfaced insights in plain English. Clinics started using top 10% rankings for staff recognition and marketing. The feature outgrew what we designed it for.
+  </Section>
+</Section>
+
+
+
+
+
+<QuoteCarousel client:load quotes={[
+  {text: "Volpara gives us confidence that we did the best possible job for our patients.", author: "Technologist", role: "New Hampshire" },
+  { text: "So many things I love, particularly, the flip to highlight excellent rather than missed metrics and the ‘Take action’ language", author: "Clinical Onboarding" },
+  { text: "Analytics has been a revelation, the only place our techs can get actionable insights.", author: "Technologist", role: "Wisconsin" },
+  { text: "My results rank in the top 10% globally. You can teach an old dog new tricks.", author: "Technologist", role: "Queensland" },
+]} />
+
+<Section label="Outcomes" title="The numbers moved">
+  Four months after release, we saw <i>statistically significant</i> improvements across positioning, compression, and quality, measured across all technologists using the software before and after launch.
+
+<StatCallout
+  stats={[
+    { value: '2.16', label: 'Median quality score up from 2.04' },
+    { value: '+5%', label: 'Positioning score improvement' },
+    { value: '70%', label: 'Login retention up from 55% pre-release' },
+  ]}
+/>
+</Section>
+
+<Section title="Recognition">
+“The Volpara Analytics interface shows great consideration of patient and operator needs, as well as thoughtful application of the Volpara brand. We especially appreciated the fine-tuned information hierarchy visual priority, and colour cues. All of which enable a rapid understanding of data being displayed, and faster, more accurate decision-making. Well done.”
+
+– Good Design Awards Jury
+</Section>
+
+<Section title="Credits">
+Product direction from Lisa Johnston PhD. Design direction from Rachel Radford. Design system and front-end collaboration with Ryan Lambert.
+</Section>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  flip?: boolean;
+  gap?: string;
+  align?: 'center' | 'start' | 'end';
+}
+
+const { flip = false, align = 'center' } = Astro.props;
+---
+
+<div class:list={['two-col', { 'is-flipped': flip }]} style={`align-items: ${align}`}>
+  <div class="two-col-left">
+    <slot name="left" />
+  </div>
+  <div class="two-col-right">
+    <slot name="right" />
+  </div>
+</div>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: 4rem auto;
+  }
+
+  .two-col :global(.cs-section-body p) {
+    text-wrap: balance;
+    max-width: none;
+}
+
+  .is-flipped {
+    direction: rtl;
+  }
+
+  .is-flipped > * {
+    direction: ltr;
+  }
+
+  @media (max-width: 1024px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+
+    .is-flipped {
+      direction: ltr;
+    }
+  }
+</style>

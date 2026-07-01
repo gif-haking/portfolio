@@ -1,0 +1,79 @@
+---
+title: Karbon Integrations
+description: Volpara Analytics helps mammogram technologists monitor and improve their performance. Better technique means fewer missed cancers.
+year: '2026'
+client: KarbonHQ
+status: shipped
+coverColor: '#292929ff'
+published: true
+order: 2
+---
+
+import Hero from '../../components/cs/Hero.astro';
+import Intro from '../../components/cs/Intro.astro';
+import Section from '../../components/cs/Section.astro';
+import Outcomes from '../../components/cs/Outcomes.astro';
+import Quote from '../../components/cs/Quote.astro';
+import Credits from '../../components/cs/Credits.astro';
+import ImageFull from '../../components/cs/ImageFull.astro';
+import ImageTwo from '../../components/cs/ImageTwo.astro';
+import Split from '../../components/cs/Split.astro';
+
+<Hero
+  description={frontmatter.description}
+  year={frontmatter.year}
+  status={frontmatter.status}
+  client={frontmatter.client}
+  coverColor={frontmatter.coverColor}
+/>
+
+<Intro heading="Overview">
+  Volpara's analytics platform helps radiographers understand the quality of the mammograms they take. The data existed — but nobody was looking at it. We redesigned the experience to make it actually useful.
+</Intro>
+
+<Section label="Research" title="Understanding the problem">
+  We ran 14 moderated usability sessions across three sites in the US, UK, and Australia. The consistent finding: technologists trusted their instincts over the data because the dashboard felt like it was built for administrators, not for them.
+
+  - Data was presented as raw numbers with no context
+  - No indication of what was good or bad
+  - No sense of personal progress over time
+</Section>
+
+<Split image="/images/volpara/before.png" alt="The old PowerBI dashboard">
+  ## A premium product that wasn't delivering on its promise
+
+  Clinics weren't seeing the value in Volpara Analytics. Engagement was low and churn was a real risk...
+</Split>
+
+<ImageFull src="/images/volpara/research.png" alt="Research synthesis board" caption="Affinity mapping from 14 user interviews" />
+
+<Section label="Process" title="Finding the right frame">
+  We explored three directions before landing on a fitness-tracker metaphor — personal, progressive, and motivating. Weekly scores, streaks, and peer benchmarks gave technologists something to care about.
+</Section>
+
+<ImageTwo caption="Early explorations vs final direction">
+  <img src="/images/volpara/exploration-1.png" alt="Exploration 1" />
+  <img src="/images/volpara/exploration-2.png" alt="Exploration 2" />
+</ImageTwo>
+
+<Section label="Solution" title="Data that earns attention">
+  The redesigned dashboard leads with a personal score, contextualised against site averages and personal history. Drill-down views let technologists understand specific metrics without overwhelming them upfront.
+</Section>
+
+<Quote author="Radiographer, Auckland" role="User interview participant">
+  For the first time I actually want to check this at the start of my shift.
+</Quote>
+
+<Outcomes stats={[
+  { value: '40%', label: 'Increase in daily active users' },
+  { value: '2.1×', label: 'Session length' },
+  { value: '94%', label: 'Satisfaction score' },
+]}>
+  The redesign shipped to all 2,000+ active sites within 6 weeks of launch. Daily active usage increased by 40% and support tickets related to dashboard confusion dropped significantly.
+</Outcomes>
+
+<Credits credits={[
+  { name: 'Hayden King', role: 'Product Design' },
+  { name: 'Jane Smith', role: 'Engineering Lead' },
+  { name: 'Alex Johnson', role: 'Product Manager' },
+]} />

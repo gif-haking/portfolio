@@ -1,0 +1,98 @@
+---
+title: Kiwibank
+description: Redesigning Kiwibank's public website around how customers actually think about money.
+year: '2019'
+client: Kiwibank
+status: shipped
+coverColor: '#253531'
+image: '/images/kiwibank/kb-cover.png'
+published: true
+order: 4
+---
+
+import Hero from '../../components/cs/Hero.astro';
+import Intro from '../../components/cs/Intro.astro';
+import Section from '../../components/cs/Section.astro';
+import Outcomes from '../../components/cs/Outcomes.astro';
+import QuoteCarousel from '../../components/cs/QuoteCarousel.tsx';
+import Credits from '../../components/cs/Credits.astro';
+import ImageFull from '../../components/cs/ImageFull.astro';
+import ImageTwo from '../../components/cs/ImageTwo.astro';
+import TwoCol from '../../components/cs/TwoCol.astro';
+import Card from '../../components/cs/Card.astro';
+import CardGrid from '../../components/cs/Cardgrid.astro';
+import StatCallout from '../../components/cs/StatCallout.astro';
+import BeforeAfter from '../../components/cs/BeforeAfter.astro';
+
+
+<Hero
+  description={frontmatter.description}
+  year={frontmatter.year}
+  status={frontmatter.status}
+  client={frontmatter.client}
+  coverColor={frontmatter.coverColor}
+  image="/images/kiwibank/kiwibank-hero.png"
+  imageAlt="Kiwibank public website redesign"
+/>
+
+<Section label="Research" title="The gap was between reading and understanding">
+  Banking websites are built around the assumption that customers already know what they are looking for. Research across 25 participants, interviewed one-on-one in six locations across New Zealand, told a different story. There was a consistent gap between customers reading information and actually understanding it.
+
+  The research explored not just the website but how people relate to money more broadly. Key themes around confidence, context, and trust shaped a core design principle: support every key customer decision with information that is relevant and helpful, meeting people where they are.
+
+    <StatCallout
+    stats={[
+      { value: '25', label: 'Participants interviewed' },
+      { value: '6', label: 'Locations across NZ' },
+      { value: '4', label: 'Diverse income brackets' },
+    ]}
+  />
+</Section>
+
+<Section label="Framework" title="Four modes, one experience">
+  Research identified four distinct modes customers arrive in, each requiring a different kind of support. These became the foundation for the content model and interaction patterns across the site.
+
+  <CardGrid cols={2}>
+    <Card title="Find" description="Customers who know what they want. Clear pathways get them there quickly." />
+    <Card title="Explore" description="Customers with a goal but no clear path. The site understands their context and helps them orient." />
+    <Card title="Learn" description="Customers building understanding before they can decide. Plain language and tools make concepts concrete." />
+    <Card title="Decide" description="Customers ready to commit. Depth and transparency give them the confidence to act." />
+  </CardGrid>
+</Section>
+
+<Section label="Design" title="Start with what you are trying to do">
+  People do not think in product categories. They think in situations. The homepage reflected that with a natural language entry point: customers could describe what they were trying to achieve, and the site would surface relevant knowledge articles, tools, and products around that goal.
+
+  It was a direct expression of the research, and the clearest demonstration of the framework in action.
+</Section>
+
+<Card bleed>
+  <img slot="media" src="/images/kiwibank/kb-natural-language.png" alt="Natural language entry point on the Kiwibank homepage" />
+</Card>
+
+<Section label="Design System" title="Adaptable without losing coherence">
+  The design system was built to serve four very different customer modes without fragmenting the experience. Components were optimised for their specific role, whether that was an interaction, a decision point, or a piece of information. Adaptability and consistency were not in tension. They were designed together.
+</Section>
+
+<CardGrid cols={1}>
+  <Card bleed>
+    <img slot="media" src="/images/kiwibank/components.png" alt="Design system components" />
+  </Card>
+  <Card bleed>
+    <img slot="media" src="/images/kiwibank/components-02.png" alt="Design system components" />
+  </Card>
+</CardGrid>
+
+<Card bleed>
+  <img slot="media" src="/images/kiwibank/headers.png" alt="Header components" />
+</Card>
+
+<Section title="Recognition">
+  "Kiwibank's digital experience highlights the amazing work done to interweave customer-centric journeys into a space that traditionally pushes products. The customer's goals are addressed from the get-go and relevant content is surfaced as you progress through the site, making for a connected and personalised online experience. An example of inclusive design from experience, to visuals, to copy."
+
+  – Judges comments
+</Section>
+
+<Section title="Credits">
+  Product direction from Lisa Johnston PhD. Design direction from Rachel Radford. Design system and front-end collaboration with Ryan Lambert.
+</Section>

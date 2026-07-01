@@ -1,0 +1,48 @@
+---
+interface Props {
+  label: string;
+  title?: string;
+}
+
+const { label, title } = Astro.props;
+---
+
+<section class="cs-container">
+  <div class="cs-section-inner">
+    <div class="cs-section-header">
+      {title && <h2 class="mb-5 tracking-[-0.0125em] cs-section-title">{title}</h2>}
+    </div>
+    <div class="text-base md:text-lg cs-section-body">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cs-section-inner {
+    max-width: var(--max-width);
+    margin: 5rem auto;
+  }
+
+  .cs-section-title {
+    text-wrap: balance;
+  }
+
+  .cs-section-body :global(p) {
+    max-width: 66%;
+    text-wrap: pretty;
+    line-height: var(--leading-relaxed);
+    color: var(--color-dark-grey);
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-section-body :global(ul) {
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-section-body :global(li) {
+    line-height: var(--leading-relaxed);
+    color: var(--color-dark-grey);
+    margin-bottom: 0.5rem;
+  }
+</style>

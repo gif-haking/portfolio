@@ -1,0 +1,44 @@
+---
+interface Props {
+  caption?: string;
+  background?: string;
+}
+
+const { caption, background } = Astro.props;
+---
+
+<figure class="cs-image-two" style={background ? `background:${background}` : ''}>
+  <div class="cs-image-two-grid">
+    <slot />
+  </div>
+  {caption && <figcaption class="cs-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .cs-image-two {
+    width: 100%;
+    margin: 3rem 0;
+    padding: 3rem;
+    border-radius: 8px;
+    background: var(--color-off-white);
+  }
+
+  .cs-image-two-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .cs-image-two-grid :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .cs-caption {
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+</style>

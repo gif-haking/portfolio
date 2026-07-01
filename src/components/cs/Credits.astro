@@ -1,0 +1,79 @@
+---
+interface Credit {
+  name: string;
+  role: string;
+  href?: string;
+}
+
+interface Props {
+  credits: Credit[];
+}
+
+const { credits } = Astro.props;
+---
+
+<section class="cs-credits">
+  <div class="cs-container">
+    <span class="cs-section-header">Credits</span>
+    <div class="cs-credits-list">
+      {credits.map(credit => (
+        <div class="cs-credit">
+          <span class="cs-credit-role">{credit.role}</span>
+          {credit.href
+            ? <a href={credit.href} class="cs-credit-name" target="_blank" rel="noopener">{credit.name}</a>
+            : <span class="cs-credit-name">{credit.name}</span>
+          }
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cs-credits {
+    padding: 4rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cs-section-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-grey);
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-credits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cs-credit {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .cs-credit-role {
+    color: var(--color-grey);
+  }
+
+  .cs-credit-name {
+    color: var(--color-off-black);
+  }
+
+  a.cs-credit-name {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--color-light-grey);
+    transition: text-decoration-color 0.15s ease;
+  }
+
+  a.cs-credit-name:hover {
+    text-decoration-color: var(--color-off-black);
+  }
+</style>

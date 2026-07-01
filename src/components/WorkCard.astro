@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  description: string;
+  coverColor?: string;
+  image?: string;
+}
+
+const { title, slug, description, coverColor = '#E8E6DF', image } = Astro.props;
+
+---
+
+<a href={`/work/${slug}`} class="p-2 work-card shadow-border rounded-xl">
+<div class="card-cover rounded-lg overflow-hidden" style={image ? '' : `background-color: ${coverColor}`}>
+  {image && <img src={image} alt={title} />}  </div>
+  <div class="card-body pt-4 p-2">
+    <h2 class="text-base lg:text-base lg:leading-relaxed">{title}</h2>
+    <p class="text-dark-grey text-sm lg:text-sm leading:none">{description}</p>
+  </div>
+</a>
+
+<style>
+  .work-card {
+    will-change: transform;
+    display: block;
+    overflow: hidden;
+    background: var(--color-surface);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .work-card:hover {
+  box-shadow:
+    0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+  transform: scale(1.01);
+  }
+
+  .card-cover {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+  }
+
+  .card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+  .card-title {
+    font-family: var(--font-sans);
+    font-weight: var(--font-bold);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-description {
+    text-wrap: pretty;
+    color: var(--color-grey);
+    line-height: 1.6;
+  }
+</style>

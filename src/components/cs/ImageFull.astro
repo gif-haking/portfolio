@@ -1,0 +1,40 @@
+---
+// ImageFull - full width image
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  background?: string;
+}
+
+const { src, alt, caption, background } = Astro.props;
+---
+
+<figure class="cs-image-full" style={background ? `background:${background}` : ''}>
+  <img src={src} alt={alt} />
+  {caption && <figcaption class="cs-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .cs-image-full {
+    width: 100%;
+    margin: 3rem 0;
+    padding: 3rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-off-white);
+  }
+
+  .cs-image-full img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .cs-caption {
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+</style>

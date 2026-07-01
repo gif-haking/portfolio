@@ -1,0 +1,81 @@
+---
+interface Props {
+  cols?: 1 | 2 | 3;
+  layout?: 'cards' | 'split'; // split = 50/50 cards + text
+  caption?: string;
+}
+
+const { cols = 3, layout = 'cards', caption } = Astro.props;
+---
+
+<figure class:list={['cs-card-grid', `cs-card-grid--cols-${cols}`, { 'cs-card-grid--split': layout === 'split' }]}>
+  <div class="cs-card-grid-inner">
+    {layout === 'split' ? (
+      <>
+        <div class="cs-card-grid-text">
+          <slot name="text" />
+        </div>
+        <div class="cs-card-grid-media">
+          <slot />
+        </div>
+      </>
+    ) : (
+      <slot />
+    )}
+  </div>
+  {caption && <figcaption class="cs-card-grid-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .cs-card-grid {
+  margin: 5rem auto;
+  max-width: var(--max-width);
+  }
+
+  .cs-card-grid-inner {
+    display: grid;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  /* Column variants */
+  .cs-card-grid--cols-1 .cs-card-grid-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-card-grid--cols-2 .cs-card-grid-inner {
+    grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+
+  }
+
+  .cs-card-grid--cols-3 .cs-card-grid-inner {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* Split layout: cards on right, text slot on left */
+  .cs-card-grid--split .cs-card-grid-inner {
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .cs-card-grid-caption {
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .cs-card-grid--cols-2 .cs-card-grid-inner,
+    .cs-card-grid--cols-3 .cs-card-grid-inner,
+    .cs-card-grid--split .cs-card-grid-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-card-grid--cols-1 .cs-card-grid-inner {
+      max-width: 100%;
+    }
+  }
+</style>

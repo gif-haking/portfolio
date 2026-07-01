@@ -1,0 +1,247 @@
+---
+interface Props {
+  before: string;
+  after: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+  caption?: string;
+  maxWidth?: string;
+  bare?: boolean;
+}
+
+const { before, after, beforeAlt = 'Before', afterAlt = 'After', caption, maxWidth, bare = false } = Astro.props;
+---
+
+<figure class:list={['before-after', { 'is-bare': bare }]} style={maxWidth ? `max-width: ${maxWidth}` : ''}>
+  <div class="before-after-container shadow-border">
+
+    <!-- Images -->
+    <div class="ba-images">
+      <div class="ba-after">
+        <img src={after} alt={afterAlt} />
+      </div>
+      <div class="ba-before">
+        <img src={before} alt={beforeAlt} />
+      </div>
+      <div class="ba-divider"></div>
+    </div>
+
+    <!-- Scrubber -->
+    <div class="ba-scrubber">
+      <div class="ba-scrubber-labels">
+        <span>Before</span>
+        <span>After</span>
+      </div>
+      <div class="ba-track">
+        <div class="ba-fill"></div>
+        <div class="ba-thumb"></div>
+      </div>
+    </div>
+
+  </div>
+  {caption && <figcaption class="ba-caption">{caption}</figcaption>}
+</figure>
+
+<script>
+  document.querySelectorAll('.before-after').forEach(figure => {
+    const beforeEl = figure.querySelector('.ba-before') as HTMLElement;
+    const divider = figure.querySelector('.ba-divider') as HTMLElement;
+    const fill = figure.querySelector('.ba-fill') as HTMLElement;
+    const thumb = figure.querySelector('.ba-thumb') as HTMLElement;
+    const track = figure.querySelector('.ba-track') as HTMLElement;
+
+    let position = 50;
+
+    const setPosition = (pct: number) => {
+      position = Math.min(Math.max(pct, 2), 98);
+      beforeEl.style.width = `${position}%`;
+      divider.style.left = `${position}%`;
+      fill.style.width = `${position}%`;
+      thumb.style.left = `${position}%`;
+    };
+
+    const getPct = (x: number, el: HTMLElement) => {
+      const rect = el.getBoundingClientRect();
+      return (x - rect.left) / rect.width * 100;
+    };
+
+    let dragging = false;
+    let dragTarget: HTMLElement | null = null;
+
+    track.addEventListener('mousedown', e => {
+      dragging = true;
+      dragTarget = track;
+      setPosition(getPct(e.clientX, track));
+    });
+
+    track.addEventListener('touchstart', e => {
+      dragging = true;
+      dragTarget = track;
+      setPosition(getPct(e.touches[0].clientX, track));
+    }, { passive: true });
+
+    window.addEventListener('mousemove', e => {
+      if (!dragging || !dragTarget) return;
+      setPosition(getPct(e.clientX, dragTarget));
+    });
+
+    window.addEventListener('touchmove', e => {
+      if (!dragging || !dragTarget) return;
+      setPosition(getPct(e.touches[0].clientX, dragTarget));
+    }, { passive: true });
+
+    window.addEventListener('mouseup', () => { dragging = false; dragTarget = null; });
+    window.addEventListener('touchend', () => { dragging = false; dragTarget = null; });
+
+    setPosition(50);
+  });
+</script>
+
+<style>
+  .before-after {
+    margin: 3rem auto;
+    max-width: var(--max-width);
+  }
+
+  .before-after.is-bare {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .before-after.is-bare .before-after-container {
+    flex: 1;
+  }
+
+  .before-after-container {
+     user-select: none;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Images area */
+  .ba-images {
+    position: relative;
+    flex: 1;
+  }
+
+  .ba-after {
+    width: 100%;
+  }
+
+  .ba-after img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ba-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+  }
+
+  .ba-before img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    display: block;
+  }
+
+  .ba-after img,
+.ba-before img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+  .ba-divider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    background: var(--color-border);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* Scrubber */
+  .ba-scrubber {
+    background: var(--color-off-white);
+    border-top: 1px solid var(--color-border);
+    padding: 1rem 1rem 1.5rem ;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .ba-scrubber-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+    color: var(--color-grey);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .ba-track {
+    height: 6px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .ba-track::before {
+  content: '';
+  position: absolute;
+  inset: -12px 0;
+}
+
+  .ba-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: var(--color-off-black);
+    border-radius: 100px;
+    pointer-events: none;
+  }
+
+  .ba-thumb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 0.1s ease;
+  }
+
+  .ba-track:hover .ba-thumb {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  .ba-caption {
+    font-size: var(--text-sm);
+    color: var(--color-grey);
+    margin-top: 0.75rem;
+    text-align: left;
+  }
+</style>

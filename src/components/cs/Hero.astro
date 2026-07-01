@@ -1,0 +1,129 @@
+---
+interface Props {
+  description: string;
+  year: string;
+  status?: 'shipped' | 'beta' | 'prototype';
+  client?: string;
+  coverColor?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const { description, year, client, status, coverColor = '#E8E6DF', image, imageAlt } = Astro.props;
+
+const statusConfig = {
+  shipped: { label: 'Shipped', color: '#4faf84' },
+  beta: { label: 'Beta', color: '#f6c858' },
+  prototype: { label: 'Prototype', color: '#8d6af7' },
+}
+
+const statusData = status ? statusConfig[status] : null;
+---
+
+<section class="cs-container">
+  <h1 class="cs-hero-description text-3xl lg:text-5xl max-w-4xl">{description}</h1>
+  <div class="cs-hero-pills">
+    {client && <span class="pill">{client}</span>}
+    {year && <span class="pill">{year}</span>}
+    {statusData && (
+     <span class="pill">
+        <span class="pill-dot" style={`background:${statusData.color}`}></span>
+       {statusData.label}
+      </span>
+    )}
+  </div>
+</section>
+<section class="cs-hero" style={`background-color: ${coverColor}`}>
+<div class="cs-cover">
+  {image && <img src={image} alt={imageAlt} />}
+</div>
+</section>
+
+
+<style>
+  .cs-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-dark-grey);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 0.3rem 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: -0.125em;
+}
+
+  .cs-hero-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-hero-description {
+    padding: 6rem 0 0.5rem;
+    line-height: var(--leading-tight);
+    max-width: 66%;
+    letter-spacing: -0.1rem;
+    text-wrap: balance;
+    margin-bottom: 2rem;
+  }
+
+  .cs-hero-details {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cs-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cs-detail-label {
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-grey);
+  }
+
+  .cs-detail span:last-child {
+    font-size: 0.9375rem;
+  }
+
+
+.cs-cover {
+  width: 100%;
+  margin: 3rem 0;
+  overflow: hidden;
+}
+
+.cs-cover img {
+width: var(--max-width); 
+margin: 3rem auto auto; 
+align-items: bottom;
+object-fit: contain;
+}
+</style>

@@ -1,0 +1,79 @@
+---
+import { ArrowRight } from 'lucide-astro';
+import { ArrowUpRight } from 'lucide-astro';
+
+// src/components/EntryList.astro
+interface Entry {
+  year: string;
+  title: string;
+  subtitle?: string;
+  href?: string;
+}
+
+interface Props {
+  entries: Entry[];
+}
+
+const { label, entries } = Astro.props;
+---
+
+<div class="entry-list">
+  <div class="entry-rows text-lg lg:text-2xl leading-none ">
+    {entries.map(entry => (
+      <a href={entry.href ?? '#'} class="entry-row">
+        <span class="entry-year tabular-numbers">{entry.year}</span>
+        <div class="entry-info">
+          <span class="entry-title">{entry.title}</span>
+          <span class="entry-subtitle">{entry.subtitle}</span>
+        </div>
+        <ArrowUpRight size={14} strokeWidth={1.5} />
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .entry-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: top;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .entry-rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .entry-row {
+    display: grid;
+    color: var(--color-off-black);
+    grid-template-columns: 1fr 2fr auto;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.15s ease;
+  }
+
+  .entry-row:hover {
+    color: var(--color-grey);
+  }
+
+
+  .entry-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .entry-title {
+    font-weight: var(--font-weight-regular);
+
+  }
+
+  .entry-subtitle {
+    color: var(--color-grey);
+  }
+
+  .entry-arrow {
+    color: var(--color-grey);
+  }
+</style>

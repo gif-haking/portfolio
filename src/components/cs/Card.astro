@@ -1,0 +1,78 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  background?: string;
+  bleed?: boolean;
+}
+
+const { title, description, background = 'var(--color-off-white)', bleed = false } = Astro.props;
+---
+
+<div class="cs-card-wrapper">
+  <div class:list={['cs-card border-overlay']}>
+    <div class:list={['cs-card-media', { 'cs-card-media--bleed': bleed }]} style={`background: ${background}`}><slot name="media" />
+    </div>
+  </div>
+  {(title || description) && (
+    <div class="cs-card-body pt-4">
+      {title && <h2 class="text-base lg:text-base lg:leading-relaxed">{title}</h2>}
+      {description && <p class="text-dark-grey text-sm lg:text-sm leading:none">{description}</p>}
+    </div>
+  )}
+</div>
+
+<style>
+.cs-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cs-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.cs-card-media {
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  .cs-card-media :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+  }
+
+  .cs-card-title {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-off-black);
+    margin-bottom: 0.25rem;
+    line-height: var(--leading-snug);
+  }
+
+  .cs-card-description {
+    line-height: var(--leading-relaxed);
+  }
+
+  .cs-card-media {
+  padding: 2rem;
+}
+
+.cs-card-media--bleed {
+  padding: 0;
+}
+
+.cs-card-media--bleed :global(img) {
+  border-radius: 0;
+}
+</style>

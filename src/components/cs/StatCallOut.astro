@@ -1,0 +1,53 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="cs-stat-callout">
+  {stats.map(stat => (
+    <div class="cs-stat-item">
+      <span class="cs-stat-value">{stat.value}</span>
+      <span class="cs-stat-label">{stat.label}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .cs-stat-callout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: auto;
+  }
+
+  .cs-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+  }
+
+.cs-stat-value {
+  font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-none);
+  color: var(--color-off-black);
+}
+
+.cs-stat-label {
+  font-size: var(--text-sm);
+  color: var(--color-grey);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+</style>
