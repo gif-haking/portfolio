@@ -14,7 +14,7 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "astro": "^4.0.0",
-    "lucide-astro": "^0.556.0",
+    "lucide-astro": "^0.354.0",
     "motion": "^12.42.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
