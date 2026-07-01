@@ -13,11 +13,10 @@ import Hero from '../../components/cs/Hero.astro';
 import Intro from '../../components/cs/Intro.astro';
 import Section from '../../components/cs/Section.astro';
 import Outcomes from '../../components/cs/Outcomes.astro';
-import Quote from '../../components/cs/Quote.astro';
+import QuoteCarousel from '../../components/cs/QuoteCarousel.tsx';
 import Credits from '../../components/cs/Credits.astro';
 import ImageFull from '../../components/cs/ImageFull.astro';
 import ImageTwo from '../../components/cs/ImageTwo.astro';
-import Split from '../../components/cs/Split.astro';
 
 <Hero
   description={frontmatter.description}
@@ -39,12 +38,6 @@ import Split from '../../components/cs/Split.astro';
   - No sense of personal progress over time
 </Section>
 
-<Split image="/images/volpara/before.png" alt="The old PowerBI dashboard">
-  ## A premium product that wasn't delivering on its promise
-
-  Clinics weren't seeing the value in Volpara Analytics. Engagement was low and churn was a real risk...
-</Split>
-
 <ImageFull src="/images/volpara/research.png" alt="Research synthesis board" caption="Affinity mapping from 14 user interviews" />
 
 <Section label="Process" title="Finding the right frame">
@@ -60,9 +53,6 @@ import Split from '../../components/cs/Split.astro';
   The redesigned dashboard leads with a personal score, contextualised against site averages and personal history. Drill-down views let technologists understand specific metrics without overwhelming them upfront.
 </Section>
 
-<Quote author="Radiographer, Auckland" role="User interview participant">
-  For the first time I actually want to check this at the start of my shift.
-</Quote>
 
 <Outcomes stats={[
   { value: '40%', label: 'Increase in daily active users' },
