@@ -6,7 +6,7 @@ interface Props {
   bleed?: boolean;
 }
 
-const { title, description, background = 'var(--color-off-white)', bleed = false } = Astro.props;
+const { title, description, background = 'var(--color-surface)', bleed = false } = Astro.props;
 ---
 
 <div class="cs-card-wrapper">
@@ -55,7 +55,7 @@ const { title, description, background = 'var(--color-off-white)', bleed = false
 
   .cs-card-title {
     font-weight: var(--font-weight-medium);
-    color: var(--color-off-black);
+    color: var(--color-text);
     margin-bottom: 0.25rem;
     line-height: var(--leading-snug);
   }

@@ -16,13 +16,16 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
 
-  --color-off-black: #232323;
-  --color-dark-grey: #383838;
-  --color-grey: #6b6b6b;
-  --color-light-grey: #cecec9;
-  --color-off-white: #fafafa;
-  --color-bg: #FFFFFF;
-  --color-border: #E4E2DA;
+  --color-text: oklch(25.6% 0 0);
+  --color-text-body: oklch(34.1% 0 0);
+  --color-text-muted: oklch(52.8% 0 0);
+
+  --color-bg: oklch(100% 0 0);
+  --color-hover: oklch(96% 0.005 100);
+  --color-surface: oklch(92.5% 0.005 100);
+  --color-border: oklch(91.2% 0.005 100);
+  --color-subtle: oklch(0 0 0/0.08);
+
 }
 
 @layer base {
@@ -44,13 +47,13 @@
 
   p {
     line-height: var(--leading-relaxed);
-    color: var(--color-dark-grey);
+    color: var(--color-text-body);
   }
 }
 
 ::selection {
   background-color: #fff700c7;
-  color: var(--color-off-black);
+  color: var(--color-text);
 }
 
 @layer utilities {
@@ -78,9 +81,9 @@
   --max-width: 1000px;
   --content-width: 680px;
 
-  --color-muted: var(--color-grey);
+  --color-muted: var(--color-text-muted);
   --color-white: #fff;
-  --color-surface: var(--color-off-white);
+  --color-surface: var(--color-surface);
 }
 
 html {
@@ -93,12 +96,12 @@ body {
   font-family: var(--font-sans);
   font-weight: var(--font-weight-normal);
   background-color: var(--color-bg);
-  color: var(--color-off-black);
+  color: var(--color-text);
   line-height: 1.6;
 }
 
 a {
-  color: var(--color-off-black);
+  color: var(--color-text);
   text-decoration: none;
 }
 

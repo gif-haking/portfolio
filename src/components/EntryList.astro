@@ -46,7 +46,7 @@ const { entries } = Astro.props;
 
   .entry-row {
     display: grid;
-    color: var(--color-off-black);
+    color: var(--color-text);
     grid-template-columns: 1fr 2fr auto;
     padding-block: 1rem;
     border-bottom: 1px solid var(--color-border);
@@ -54,7 +54,7 @@ const { entries } = Astro.props;
   }
 
   .entry-row:hover {
-    color: var(--color-grey);
+    color: var(--color-text-muted);
   }
 
 
@@ -69,10 +69,10 @@ const { entries } = Astro.props;
   }
 
   .entry-subtitle {
-    color: var(--color-grey);
+    color: var(--color-text-muted);
   }
 
   .entry-arrow {
-    color: var(--color-grey);
+    color: var(--color-text-muted);
   }
 </style>

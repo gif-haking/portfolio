@@ -96,7 +96,7 @@ export default function QuoteCarousel({ quotes }: Props) {
                 <p style={{
                   fontSize: 'var(--text-lg)',
                   lineHeight: 'var(--leading-snug)',
-                  color: 'var(--color-off-black)',
+                  color: 'var(--color-text)',
                   fontStyle: 'italic',
                   margin: 0,
                 }}>
@@ -105,12 +105,12 @@ export default function QuoteCarousel({ quotes }: Props) {
                 {(quote.author || quote.role) && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                     {quote.author && (
-                      <span style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--font-weight-medium)', color: 'var(--color-off-black)', lineHeight: 'var(--leading-none)' }}>
+                      <span style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--font-weight-medium)', color: 'var(--color-text)', lineHeight: 'var(--leading-none)' }}>
                         {quote.author}
                       </span>
                     )}
                     {quote.role && (
-                      <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-grey)' }}>
+                      <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)' }}>
                         {quote.role}
                       </span>
                     )}
@@ -135,7 +135,7 @@ export default function QuoteCarousel({ quotes }: Props) {
                   width: i === realIndex ? '18px' : '6px',
                   height: '6px',
                   borderRadius: '100px',
-                  background: i === realIndex ? 'var(--color-off-black)' : 'var(--color-light-grey)',
+                  background: i === realIndex ? 'var(--color-text)' : 'var(--color-subtle)',
                   border: 'none',
                   cursor: 'pointer',
                   padding: 0,
@@ -166,7 +166,7 @@ function ArrowButton({ direction, onClick }: { direction: 'left' | 'right'; onCl
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        color: 'var(--color-off-black)',
+        color: 'var(--color-text)',
         flexShrink: 0,
       }}
     >
