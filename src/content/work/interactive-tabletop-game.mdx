@@ -1,12 +1,13 @@
 ---
 title: Interactive Tabletop Game
 description: A physical-digital game designed around a child's imagination, no instructions, just play.
-year: '2021'
-client: Independent
-status: shipped
+year: '2016'
+client: Academic
+status: prototype
 coverColor: 'oklch(0.171 0.085 280.199)'
+image: '/images/tabletop/ITTG-Cover.png'
 published: true
-order: 3
+order: 6
 ---
 
 
@@ -17,6 +18,8 @@ import QuoteCarousel from '../../components/cs/QuoteCarousel.tsx';
 import Credits from '../../components/cs/Credits.astro';
 import ImageFull from '../../components/cs/ImageFull.astro';
 import ImageTwo from '../../components/cs/ImageTwo.astro';
+import Card from '../../components/cs/Card.astro';
+import CardGrid from '../../components/cs/Cardgrid.astro';
 
 
 <Hero
@@ -40,8 +43,16 @@ import ImageTwo from '../../components/cs/ImageTwo.astro';
   Using Lego blocks to cast shadows in a physical space, users had to solve a relatively simple problem. We were amazed by the high level of participation, the variety of solutions that were proposed, and how long people played within our space.
 </Section>
 
+<CardGrid cols={2}>
+  <Card bleed>
+    <img slot="media" src="/images/tabletop/shadow-play-1.png" alt="Quality score" />
+  </Card>
+  <Card bleed>
+    <img slot="media" src="/images/tabletop/shadow-play-2.png" alt="Insights" />
+  </Card>
+</CardGrid>
 
-<ImageFull src="/images/tabletop/shadow-play.png" alt="Early prototyping with Lego and a projector" caption="Early prototyping with Lego and a projector" />
+<ImageFull src="/images/tabletop/shadow-play-1.png" alt="Early prototyping with Lego and a projector" caption="Early prototyping with Lego and a projector" />
 
 
 <Section label="Iteration" title="Further exploration into tactile mechanics">
@@ -64,6 +75,8 @@ import ImageTwo from '../../components/cs/ImageTwo.astro';
 
   Collectibles and obstacles related to the theme randomly spawn on the display. The objective is to collect as many as possible to beat the high score. The fast-paced nature creates an energetic atmosphere that encourages replayability.
 </Section>
+
+<ImageFull src="/images/tabletop/gameplay.png" alt="Natural language entry point on the Kiwibank homepage" />
 
 
 <QuoteCarousel client:only="react" quotes={[

@@ -18,16 +18,35 @@ const { entries } = Astro.props;
 
 <div class="entry-list">
   <div class="entry-rows leading-none ">
-    {entries.map(entry => (
-      <a href={entry.href ?? '#'} class="entry-row">
+{entries.map(entry => (
+  entry.href 
+    ? (
+      <a 
+        href={entry.href}
+        class="entry-row entry-row--linked"
+        target={entry.href.startsWith('http') ? '_blank' : '_self'}
+        rel={entry.href.startsWith('http') ? 'noopener' : ''}
+      >
         <span class="entry-year tabular-numbers">{entry.year}</span>
         <div class="entry-info">
           <span class="entry-title mb-1">{entry.title}</span>
           <span class="entry-subtitle">{entry.subtitle}</span>
         </div>
-        <ArrowUpRight size={16} strokeWidth={1} />
-      </a>
-    ))}
+<span class="entry-arrow">
+  {entry.href && <ArrowUpRight size={16} strokeWidth={1} />}
+</span>   
+</a>
+    ) : (
+  <div class="entry-row">
+    <span class="entry-year tabular-numbers">{entry.year}</span>
+    <div class="entry-info">
+      <span class="entry-title mb-1">{entry.title}</span>
+      <span class="entry-subtitle">{entry.subtitle}</span>
+    </div>
+    <span class="entry-arrow"></span>
+  </div>
+)
+))}
   </div>
 </div>
 
@@ -46,6 +65,7 @@ const { entries } = Astro.props;
 
   .entry-row {
     display: grid;
+    align-items: start;
     color: var(--color-text);
     grid-template-columns: 1fr 2fr auto;
     padding-block: 1rem;
@@ -53,9 +73,14 @@ const { entries } = Astro.props;
     transition: color 0.15s ease;
   }
 
-  .entry-row:hover {
+  .entry-row--linked:hover {
     color: var(--color-text-muted);
   }
+
+  .entry-row:not(.entry-row--linked) {
+  pointer-events: none;
+  cursor: default;
+}
 
 
   .entry-info {
@@ -64,7 +89,7 @@ const { entries } = Astro.props;
   }
 
   .entry-title {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-medium);
 
   }
 
@@ -72,7 +97,7 @@ const { entries } = Astro.props;
     color: var(--color-text-muted);
   }
 
-  .entry-arrow {
-    color: var(--color-text-muted);
-  }
+.entry-arrow {
+  width: 1rem;
+}
 </style>
