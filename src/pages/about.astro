@@ -22,7 +22,7 @@ const previously = [
   <section class="about-section">
     <div class="container">
 
-      <div class="about-grid text-lg lg:text-2xl">
+      <div class="about-grid">
         <div class="about-left">
           <div class="portrait-placeholder" aria-hidden="true"></div>
         </div>
@@ -49,16 +49,16 @@ const previously = [
           </div>
 
           <div class="about-details">
-            <h3 class="detail-label text-dark-grey dark:text-light-grey mb-2.5 lg:mb-5 leading-normal lg:leading-relaxed text-lg lg:text-2xl max-w-4xl">Now</h3>
+            <h3 class="detail-label leading-normal lg:leading-relaxed text-lg lg:text-2xl max-w-4xl">Now</h3>
               <EntryList entries={now} />
   
-            <h3 class="detail-label text-dark-grey dark:text-light-grey mb-2.5 lg:mb-5 leading-normal lg:leading-relaxed text-lg lg:text-2xl max-w-4xl mt-10">Previously</h3>
+            <h3 class="detail-label leading-normal lg:leading-relaxed text-lg lg:text-2xl max-w-4xl mt-10">Previously</h3>
               <EntryList entries={previously} />
           </div>
           </div>
 
           <div class="about-contact">
-            <a href="mailto:hello@yourname.com" class="cta-link">
+            <a href="mailto:hayden.king3@ygmail.com" class="cta-link">
               Get in touch →
             </a>
           </div>
@@ -134,13 +134,13 @@ const previously = [
   .about-details {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 2rem 0;
     margin-bottom: 2.5rem;
   }
 
   .detail-label {
-    color: var(--color-muted);
+    color: var(--color-off-black);
   }
 
   .detail-group p {

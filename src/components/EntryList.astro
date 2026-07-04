@@ -17,15 +17,15 @@ const { entries } = Astro.props;
 ---
 
 <div class="entry-list">
-  <div class="entry-rows text-lg lg:text-2xl leading-none ">
+  <div class="entry-rows leading-none ">
     {entries.map(entry => (
       <a href={entry.href ?? '#'} class="entry-row">
         <span class="entry-year tabular-numbers">{entry.year}</span>
         <div class="entry-info">
-          <span class="entry-title">{entry.title}</span>
+          <span class="entry-title mb-1">{entry.title}</span>
           <span class="entry-subtitle">{entry.subtitle}</span>
         </div>
-        <ArrowUpRight size={14} strokeWidth={1.5} />
+        <ArrowUpRight size={16} strokeWidth={1} />
       </a>
     ))}
   </div>
