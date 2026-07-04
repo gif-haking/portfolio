@@ -8,5 +8,8 @@ export default defineConfig({
   integrations: [mdx(), react()],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    }
   },
 });
