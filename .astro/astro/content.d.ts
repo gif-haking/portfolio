@@ -151,6 +151,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"work": {
+"interactive-tabletop-game.mdx": {
+	id: "interactive-tabletop-game.mdx";
+  slug: "interactive-tabletop-game";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".mdx"] };
 "karbon-ai.mdx": {
 	id: "karbon-ai.mdx";
   slug: "karbon-ai";

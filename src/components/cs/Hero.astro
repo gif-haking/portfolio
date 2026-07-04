@@ -9,12 +9,13 @@ interface Props {
   imageAlt?: string;
 }
 
-const { description, year, client, status, coverColor = '#E8E6DF', image, imageAlt } = Astro.props;
+const { description, year, client, status, coverColor = 'var(--color-surface)', image, imageAlt } = Astro.props;
 
 const statusConfig = {
-  shipped: { label: 'Shipped', color: '#4faf84' },
-  beta: { label: 'Beta', color: '#f6c858' },
-  prototype: { label: 'Prototype', color: '#8d6af7' },
+  shipped: { label: 'Shipped', color: 'oklch(68.4% 0.108 170.4)' },
+  beta: { label: 'Beta', color: 'oklch(85.3% 0.075 83.7)' },
+  prototype: { label: 'Prototype', color: 'oklch(62.9% 0.124 305.4)' },
+
 }
 
 const statusData = status ? statusConfig[status] : null;

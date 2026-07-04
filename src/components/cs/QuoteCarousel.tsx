@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, useMotionValue, animate } from 'motion/react';
+import { useState, useRef, useLayoutEffect } from 'react';
+
 
 interface Quote {
   text: string;
@@ -7,31 +7,68 @@ interface Quote {
   role?: string;
 }
 
+
 interface Props {
   quotes: Quote[];
 }
 
+
 const CARD_WIDTH = 50;
 const PEEK = (100 - CARD_WIDTH) / 2;
-const CLONES = 2; // clones on each side — keeps both peek slots filled during loop
+const CLONES = 2;
 
-function offsetFor(idx: number) {
-  return `${-(idx * CARD_WIDTH) + PEEK}%`;
+
+function xFor(idx: number) {
+  return `translateX(${-(idx * CARD_WIDTH) + PEEK}%)`;
 }
 
+
 export default function QuoteCarousel({ quotes }: Props) {
-  // [last-2, last-1, ...quotes, first, second]
-  const extended = [
-    ...quotes.slice(-CLONES),
-    ...quotes,
-    ...quotes.slice(0, CLONES),
-  ];
+  const extended = [...quotes.slice(-CLONES), ...quotes, ...quotes.slice(0, CLONES)];
+
 
   const [index, setIndex] = useState(CLONES);
-  const x = useMotionValue(offsetFor(CLONES));
+  const trackRef = useRef<HTMLDivElement>(null);
+  const currentIdx = useRef(CLONES);
+
+
+  const applyTransform = (idx: number, instant: boolean) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.style.transition = instant ? 'none' : 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    el.style.transform = xFor(idx);
+    if (instant) el.getBoundingClientRect(); // force reflow so 'none' takes effect
+  };
+
+
+  useLayoutEffect(() => {
+    applyTransform(CLONES, true);
+  }, []);
+
+
+  const moveTo = (targetIdx: number) => {
+    currentIdx.current = targetIdx;
+    setIndex(targetIdx);
+    applyTransform(targetIdx, false);
+  };
+
+
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.target !== e.currentTarget || e.propertyName !== 'transform') return;
+    const i = currentIdx.current;
+    let snap: number | null = null;
+    if (i < CLONES) snap = i + quotes.length;
+    else if (i >= CLONES + quotes.length) snap = i - quotes.length;
+    if (snap !== null) {
+      currentIdx.current = snap;
+      applyTransform(snap, true);
+      setIndex(snap);
+    }
+  };
+
 
   const realIndex = ((index - CLONES) % quotes.length + quotes.length) % quotes.length;
-  const realExtIndex = CLONES + realIndex;
+
 
   const isActive = (i: number) => {
     if (i === index) return true;
@@ -41,39 +78,22 @@ export default function QuoteCarousel({ quotes }: Props) {
     return i === equiv;
   };
 
-  const moveTo = (targetIdx: number) => {
-    setIndex(targetIdx);
-    animate(x, offsetFor(targetIdx), {
-      duration: 0.4,
-      ease: [0.4, 0, 0.2, 1],
-      onComplete() {
-        if (targetIdx < CLONES) {
-          const snap = targetIdx + quotes.length;
-          x.set(offsetFor(snap));
-          setIndex(snap);
-        } else if (targetIdx >= CLONES + quotes.length) {
-          const snap = targetIdx - quotes.length;
-          x.set(offsetFor(snap));
-          setIndex(snap);
-        }
-      },
-    });
-  };
-
-  const prev    = () => moveTo(index - 1);
-  const next    = () => moveTo(index + 1);
-  const goToDot = (dot: number) => moveTo(dot + CLONES);
 
   return (
     <div style={{ margin: '3rem auto', maxWidth: 'var(--max-width)', paddingInline: '2rem' }}>
+
 
       <div style={{
         overflow: 'hidden',
         paddingBlock: '0.5rem',
         WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-        maskImage:       'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
       }}>
-        <motion.div style={{ x, display: 'flex', willChange: 'transform' }}>
+        <div
+          ref={trackRef}
+          onTransitionEnd={handleTransitionEnd}
+          style={{ display: 'flex', willChange: 'transform' }}
+        >
           {extended.map((quote, i) => (
             <div
               key={i}
@@ -119,17 +139,18 @@ export default function QuoteCarousel({ quotes }: Props) {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
 
       {quotes.length > 1 && (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '1.5rem' }}>
-          <ArrowButton direction="left" onClick={prev} />
+          <ArrowButton direction="left" onClick={() => moveTo(currentIdx.current - 1)} />
           <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
             {quotes.map((_, i) => (
               <button
                 key={i}
-                onClick={() => goToDot(i)}
+                onClick={() => moveTo(i + CLONES)}
                 aria-label={`Quote ${i + 1}`}
                 style={{
                   width: i === realIndex ? '18px' : '6px',
@@ -144,12 +165,13 @@ export default function QuoteCarousel({ quotes }: Props) {
               />
             ))}
           </div>
-          <ArrowButton direction="right" onClick={next} />
+          <ArrowButton direction="right" onClick={() => moveTo(currentIdx.current + 1)} />
         </div>
       )}
     </div>
   );
 }
+
 
 function ArrowButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void }) {
   return (
@@ -179,5 +201,8 @@ function ArrowButton({ direction, onClick }: { direction: 'left' | 'right'; onCl
     </button>
   );
 }
+
+
+
 
 

@@ -7,7 +7,7 @@ interface Props {
   image?: string;
 }
 
-const { title, slug, description, coverColor = '#E8E6DF', image } = Astro.props;
+const { title, slug, description, coverColor = coverColor = 'var(--color-surface)', image } = Astro.props;
 
 ---
 

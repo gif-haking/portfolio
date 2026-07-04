@@ -1,0 +1,82 @@
+---
+title: Interactive Tabletop Game
+description: A physical-digital game designed around a child's imagination, no instructions, just play.
+year: '2021'
+client: Independent
+status: shipped
+coverColor: 'oklch(0.171 0.085 280.199)'
+published: true
+order: 3
+---
+
+
+import Hero from '../../components/cs/Hero.astro';
+import Intro from '../../components/cs/Intro.astro';
+import Section from '../../components/cs/Section.astro';
+import QuoteCarousel from '../../components/cs/QuoteCarousel.tsx';
+import Credits from '../../components/cs/Credits.astro';
+import ImageFull from '../../components/cs/ImageFull.astro';
+import ImageTwo from '../../components/cs/ImageTwo.astro';
+
+
+<Hero
+  description={frontmatter.description}
+  year={frontmatter.year}
+  status={frontmatter.status}
+  client={frontmatter.client}
+  coverColor={frontmatter.coverColor}
+/>
+
+
+<Intro heading="Overview">
+  The Interactive Tabletop Game harnesses the imagination of child's play. With no written or visual instructions, children are encouraged to play in order to learn what does and doesn't work.
+</Intro>
+
+
+<Section label="Discovery" title="Early discovery of play">
+  Our first iteration, aptly named Shadow Play, saw us experimenting with physical and digital spaces. We wanted to explore how unusual game mechanics would cause participants to react and interact in an unfamiliar setting.
+
+
+  Using Lego blocks to cast shadows in a physical space, users had to solve a relatively simple problem. We were amazed by the high level of participation, the variety of solutions that were proposed, and how long people played within our space.
+</Section>
+
+
+<ImageFull src="/images/tabletop/shadow-play.png" alt="Early prototyping with Lego and a projector" caption="Early prototyping with Lego and a projector" />
+
+
+<Section label="Iteration" title="Further exploration into tactile mechanics">
+  As we dove deeper into the shadow mechanics, we saw limitations with the gameplay and the technical implementation. We went back to the drawing board, but wanted to keep some of the key ideas we really enjoyed and implement them differently.
+
+
+  As a team we were still intrigued and excited by the physical and digital medium, the tactility of play, and the ideals of collaboration.
+</Section>
+
+
+<ImageTwo caption="Further exploration of tactile play — working out the game mechanics">
+  <img src="/images/tabletop/exploration-1.png" alt="Tactile play exploration" />
+  <img src="/images/tabletop/mechanics.png" alt="Working out game mechanics" />
+</ImageTwo>
+
+
+<Section label="Solution" title="How the game works">
+  By placing physical blocks onto the digital display, children create physical paths that a digital character detects and continuously loops around.
+
+
+  Collectibles and obstacles related to the theme randomly spawn on the display. The objective is to collect as many as possible to beat the high score. The fast-paced nature creates an energetic atmosphere that encourages replayability.
+</Section>
+
+
+<QuoteCarousel client:only="react" quotes={[
+  { text: "A compelling game mechanic and platform supported by a great combination of hardware and software. The table's minimalist appearance belies the thought put into its gameplay, which enables play from all sides, ties learning into its tactile approach, and improves fine motor skills for kids.", author: "Judges", role: "DINZ Best Awards — Gold" },
+]} />
+
+
+<Credits credits={[
+  { name: 'Hayden King', role: 'UI/UX, Interaction Design' },
+  { name: 'Sam Bazalo', role: 'Design' },
+]} />
+
+
+
+
+

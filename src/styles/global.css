@@ -16,13 +16,16 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
 
-  --color-off-black: #232323;
-  --color-dark-grey: #383838;
-  --color-grey: #6b6b6b;
-  --color-light-grey: #cecec9;
-  --color-off-white: #fafafa;
-  --color-bg: #FFFFFF;
-  --color-border: #E4E2DA;
+  --color-off-black: oklch(25.6% 0 0);
+  --color-dark-grey: oklch(34.1% 0 0);
+  --color-grey: oklch(52.8% 0 0);
+  --color-light-grey: oklch(85% 0.005 100);
+  --color-off-white: oklch(98.5% 0 0);
+  --color-bg: oklch(100% 0 0);
+  --color-border: oklch(91.2% 0.005 100);
+  --color-surface: oklch(92.5% 0.005 100);
+
+
 }
 
 @layer base {
@@ -49,7 +52,7 @@
 }
 
 ::selection {
-  background-color: #fff700c7;
+  background-color: oklch(95.1% 0.121 120.2 / 0.78);
   color: var(--color-off-black);
 }
 
