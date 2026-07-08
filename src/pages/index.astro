@@ -2,39 +2,43 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WorkCard from '../components/WorkCard.astro';
+import HomeAnimation, { AnimatedItem } from '../components/HomeAnimation.tsx';
 
 const works = await getCollection('work', ({ data }) => data.published !== false);
 const sorted = works.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout title="Work — Hayden King">
-  <section class="hero">
-    <div class="hero-inner">
-      <h1 class="hero-headline text-3xl lg:text-5xl max-w-2xl leading-tight">
-        Currently building AI products and integrations at KarbonHQ.
-        I have experience across healthcare, policing, finance. 
-      </h1>
-    </div>
-  </section>
+    <AnimatedItem delay={0} client:only="react">
+      <section class="hero">
+        <div class="hero-inner">
+          <h1 class="hero-headline text-3xl lg:text-5xl max-w-2xl leading-tight">
+            Currently building AI products and integrations at KarbonHQ.
+            I have experience across healthcare, policing, finance. 
+          </h1>
+        </div>
+      </section>
+    </AnimatedItem>
 
-  <section class="work-grid-section">
-    <div class="work-grid-inner">
-      <h2 class=" lg:tracking-tight text-base lg:text-base">Selected work</h2>
-      <p class="tabular numbers mb-4 leading-normal lg:leading-relaxed text-sm lg:text-sm">2016-2026</p>
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 xl:gap-5 -ml-2">
-        {sorted.map(work => (
-  <WorkCard
-    title={work.data.title}
-    slug={work.slug}
-    description={work.data.description}
-    coverColor={work.data.coverColor}
-      image={work.data.image}
-
-  />
-))}
-      </div>
-    </div>
-  </section>
+    <AnimatedItem delay={0.35} client:only="react">
+      <section class="work-grid-section">
+        <div class="work-grid-inner">
+          <h2 class="lg:tracking-tight text-base lg:text-base">Selected work</h2>
+          <p class="tabular numbers mb-4 leading-normal lg:leading-relaxed text-sm lg:text-sm">2016-2026</p>
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 xl:gap-5 -ml-2">
+            {sorted.map(work => (
+              <WorkCard
+                title={work.data.title}
+                slug={work.slug}
+                description={work.data.description}
+                coverColor={work.data.coverColor}
+                image={work.data.image}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </AnimatedItem>
 </BaseLayout>
 
 <style>
@@ -65,5 +69,4 @@ const sorted = works.sort((a, b) => a.data.order - b.data.order);
     font-weight: 300;
     line-height: 1.7;
   }
-
 </style>
