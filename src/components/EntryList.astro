@@ -27,7 +27,7 @@ const { entries } = Astro.props;
         target={entry.href.startsWith('http') ? '_blank' : '_self'}
         rel={entry.href.startsWith('http') ? 'noopener' : ''}
       >
-        <span class="entry-year tabular-numbers">{entry.year}</span>
+        <span class="entry-year tabular-nums">{entry.year}</span>
         <div class="entry-info">
           <span class="entry-title mb-1">{entry.title}</span>
           <span class="entry-subtitle">{entry.subtitle}</span>
@@ -38,7 +38,7 @@ const { entries } = Astro.props;
 </a>
     ) : (
   <div class="entry-row">
-    <span class="entry-year tabular-numbers">{entry.year}</span>
+    <span class="entry-year tabular-nums">{entry.year}</span>
     <div class="entry-info">
       <span class="entry-title mb-1">{entry.title}</span>
       <span class="entry-subtitle">{entry.subtitle}</span>
