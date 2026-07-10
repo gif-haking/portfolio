@@ -21,7 +21,7 @@ const { label, title } = Astro.props;
 <style>
   .cs-section-inner {
     max-width: var(--max-width);
-    margin: 5rem auto;
+    margin: 4rem auto;
   }
 
   .cs-section-title {
@@ -29,12 +29,34 @@ const { label, title } = Astro.props;
   }
 
   .cs-section-body :global(p) {
-    max-width: 66%;
+    max-width: 100%;
     text-wrap: pretty;
     line-height: var(--leading-relaxed);
     color: var(--color-text-body);
     margin-bottom: 1.25rem;
   }
+
+    @media (min-width: 768px) {
+  .cs-section-body :global(p) {
+    max-width: 80%;
+  }
+
+  .cs-section-inner {
+    max-width: var(--max-width);
+    margin: 5rem auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cs-section-body :global(p) {
+    max-width: 66%;
+  }
+
+  .cs-section-inner {
+    max-width: var(--max-width);
+    margin: 6rem auto;
+  }
+}
 
   .cs-section-body :global(ul) {
     margin-bottom: 1.5rem;

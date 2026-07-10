@@ -44,7 +44,7 @@ const pathname = Astro.url.pathname;
 
 
     <header class="site-header">
-      <nav class="nav">
+      <nav class="nav px-5 md:px-8 lg:px-0 py-6">
         <a href="/" class="nav-logo">Hayden King</a>
         <ul class="nav-links">
           <li><a href="/" class={`nav-link ${pathname === '/' || pathname.startsWith('/work/') ? 'active' : ''}`}>Work</a></li>
@@ -54,12 +54,12 @@ const pathname = Astro.url.pathname;
     </header>
 
 
-    <main class="min-h-screen">
+    <main class="min-h-screen px-5 md:px-8 lg:px-0"">
       <slot />
     </main>
 
 
-    <footer class="site-footer">
+    <footer class="site-footer px-5 md:px-8 lg:px-0 py-6">
       <p>© {new Date().getFullYear()} Hayden King</p>
       <div class="footer-links">
         <a href="mailto:hayden.king3@gmail.com">Email</a>
@@ -89,18 +89,8 @@ const pathname = Astro.url.pathname;
 
   filter: url("#noise-bg-fx") grayscale(100%);
 }
-  .site-header {
-    padding: 1.5rem 2rem;
-  }
 
 
-  .nav {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 
 
   .nav-logo {
@@ -136,25 +126,22 @@ const pathname = Astro.url.pathname;
   color: var(--color-text);
 }
 
-  .site-footer {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 3rem 0rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-
-  .footer-links a:hover {
-    color: var(--color-text);
-  }
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
 </style>

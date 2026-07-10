@@ -40,10 +40,13 @@ const { flip = false, align = 'center' } = Astro.props;
   }
 
   @media (max-width: 1024px) {
-    .two-col {
-      grid-template-columns: 1fr;
-    }
-
+  .two-col {
+    
+    grid-template-columns: 1fr  ;
+    gap: 1rem;
+    max-width: var(--max-width);
+    margin: 2rem auto;
+  }
     .is-flipped {
       direction: ltr;
     }

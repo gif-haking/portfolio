@@ -16,7 +16,7 @@ const { title, slug, description, coverColor = coverColor = 'var(--color-surface
   {image && <img src={image} alt={title} />}  </div>
   <div class="card-body pt-4 p-2">
     <h2 class="text-base lg:text-base lg:leading-relaxed">{title}</h2>
-    <p class="text-dark-grey text-sm lg:text-sm leading:none">{description}</p>
+    <p class="hidden md:block text-dark-grey text-sm lg:text-sm leading:none">{description}</p>
   </div>
 </a>
 
