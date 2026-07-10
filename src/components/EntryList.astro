@@ -19,33 +19,28 @@ const { entries } = Astro.props;
 <div class="entry-list">
   <div class="entry-rows leading-none ">
 {entries.map(entry => (
-  entry.href 
-    ? (
-      <a 
-        href={entry.href}
-        class="entry-row entry-row--linked"
-        target={entry.href.startsWith('http') ? '_blank' : '_self'}
-        rel={entry.href.startsWith('http') ? 'noopener' : ''}
-      >
-        <span class="entry-year tabular-nums">{entry.year}</span>
-        <div class="entry-info">
-          <span class="entry-title mb-1">{entry.title}</span>
-          <span class="entry-subtitle">{entry.subtitle}</span>
-        </div>
-<span class="entry-arrow">
-  {entry.href && <ArrowUpRight size={16} strokeWidth={1} />}
-</span>   
-</a>
-    ) : (
-  <div class="entry-row">
-    <span class="entry-year tabular-nums">{entry.year}</span>
-    <div class="entry-info">
-      <span class="entry-title mb-1">{entry.title}</span>
-      <span class="entry-subtitle">{entry.subtitle}</span>
+  entry.href ? (
+    <a 
+      href={entry.href}
+      class="entry-row entry-row--linked"
+      target={entry.href.startsWith('http') ? '_blank' : '_self'}
+      rel={entry.href.startsWith('http') ? 'noopener' : ''}
+    >
+      <div class="entry-info">
+        <span class="entry-title">{entry.title}</span>
+        <span class="entry-subtitle">{entry.subtitle}</span>
+      </div>
+      <span class="entry-year tabular-nums">{entry.year}</span>
+    </a>
+  ) : (
+    <div class="entry-row">
+      <div class="entry-info">
+        <span class="entry-title">{entry.title}</span>
+        <span class="entry-subtitle">{entry.subtitle}</span>
+      </div>
+      <span class="entry-year tabular-nums">{entry.year}</span>
     </div>
-    <span class="entry-arrow"></span>
-  </div>
-)
+  )
 ))}
   </div>
 </div>
@@ -54,7 +49,7 @@ const { entries } = Astro.props;
   .entry-list {
     display: grid;
     grid-template-columns: 1fr;
-    align-items: top;
+    align-items: center;
     border-top: 1px solid var(--color-border);
   }
 
@@ -65,19 +60,26 @@ const { entries } = Astro.props;
 
   .entry-row {
     display: grid;
-    align-items: start;
+    align-items: center;
     color: var(--color-text);
-    grid-template-columns: 1fr 2fr auto;
+    grid-template-columns: 1fr auto;
     padding-block: 1rem;
     border-bottom: 1px solid var(--color-border);
     transition: color 0.15s ease;
   }
 
-  .entry-row--linked:hover {
-    color: var(--color-text-muted);
-  }
+.entry-row--linked:hover .entry-title {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--color-text);
+}
 
-  .entry-row:not(.entry-row--linked) {
+.entry-row:has(.entry-title--linked) {
+  cursor: pointer;
+}
+
+
+  .entry-title:not(.entry-title--linked) {
   pointer-events: none;
   cursor: default;
 }
@@ -85,7 +87,9 @@ const { entries } = Astro.props;
 
   .entry-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center; 
   }
 
   .entry-title {
@@ -97,7 +101,8 @@ const { entries } = Astro.props;
     color: var(--color-text-muted);
   }
 
-.entry-arrow {
-  width: 1rem;
-}
+    .entry-year {
+    color: var(--color-text-muted);
+  }
+
 </style>
