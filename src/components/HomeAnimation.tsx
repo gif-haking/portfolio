@@ -1,4 +1,4 @@
-import { motion, useAnimationControls } from 'motion/react';
+import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect } from 'react';
 
 export function AnimatedItem({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) {
