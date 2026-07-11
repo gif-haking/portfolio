@@ -10,7 +10,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       dedupe: ['react', 'react-dom'],
-      alias: {'../../utils/border-radius.mjs': '/src/utils/border-radius.mjs'}
     }
   },
 });
