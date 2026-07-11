@@ -22,9 +22,9 @@
   --color-text-body: oklch(34.1% 0 0);
   --color-text-muted: oklch(52.8% 0 0);
 
-  --color-bg: oklch(100% 0 0);
+  --color-bg: oklch(0.985 0 0);
   --color-hover: oklch(96% 0.005 100);
-  --color-surface: oklch(92.5% 0.005 100);
+  --color-surface: oklch(100% 0 0);
   --color-border: oklch(91.2% 0.005 100);
   --color-subtle: oklch(0 0 0/0.08);
 
@@ -57,9 +57,9 @@
   --typeset-font-body: var(--font-sans);
   --typeset-font-heading: var(--font-sans);
   --typeset-font-mono: var(--font-mono);
-  --typeset-size: 15px;
+  --typeset-size: 1rem;
   --typeset-leading: 1.75;
-  --typeset-flow: 1.25em;
+  --typeset-flow: 1.25rem;
 }
 
 ::selection {
@@ -94,7 +94,6 @@
 
   --color-muted: var(--color-text-muted);
   --color-white: #fff;
-  --color-surface: var(--color-surface);
 }
 
 html {

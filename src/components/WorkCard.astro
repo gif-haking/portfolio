@@ -7,16 +7,16 @@ interface Props {
   image?: string;
 }
 
-const { title, slug, description, coverColor = coverColor = 'var(--color-surface)', image } = Astro.props;
+const { title, slug, description, coverColor = 'var(--color-surface)', image } = Astro.props;
 
 ---
 
-<a href={`/work/${slug}`} class="p-2 work-card shadow-border rounded-xl">
+<a href={`/work/${slug}`} class="p-1 md:p-2 work-card shadow-border rounded-xl">
 <div class="card-cover rounded-lg overflow-hidden" style={image ? '' : `background-color: ${coverColor}`}>
   {image && <img src={image} alt={title} />}  </div>
   <div class="card-body pt-4 p-2">
     <h2 class="text-base lg:text-base lg:leading-relaxed">{title}</h2>
-    <p class="hidden md:block text-dark-grey text-sm lg:text-sm leading:none">{description}</p>
+    <p class=" md:block text-dark-grey text-sm lg:text-sm leading:none">{description}</p>
   </div>
 </a>
 

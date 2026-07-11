@@ -56,6 +56,7 @@ const statusData = status ? statusConfig[status] : null;
   font-weight: var(--font-weight-medium);
   color: var(--color-text-body);
   border: 1px solid var(--color-border);
+  background-color: var(--color-surface); 
   border-radius: 100px;
   padding: 0.3rem 0.75rem;
   letter-spacing: 0.02em;
@@ -159,5 +160,39 @@ padding-inline: 1.25rem;
 width: var(--max-width); 
 margin: 3rem auto auto; 
 object-fit: contain;
+}
+
+.cs-cover img {
+  animation: unblur 0.4s ease-out 0.3s both;
+}
+
+@keyframes unblur {
+  from {
+    opacity: 0.9;
+    filter: blur(3px);
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.cs-hero-description {
+  animation: enter 0.6s ease-out both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 </style>
